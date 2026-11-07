@@ -23,5 +23,5 @@ jobs:
         run: |
           docker build \
             --label "org.opencontainers.image.source=https://github.com/kalaboba512-prog/mvd-tasks" \
-            -t ghcr.io/kalaboba512-prog/mvd-ctfd:latest .
-          docker push ghcr.io/kalaboba512-prog/mvd-ctfd:latest
+            -t ghcr.io/kalaboba512-prog/mvd-tasks:latest .
+          docker push ghcr.io/kalaboba512-prog/mvd-tasks:latest
