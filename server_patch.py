@@ -40,9 +40,10 @@ def main():
         open(mig_path, "w", encoding="utf-8").write(txt)
 
     print("[MVD-BOOT] 3. Замена 'Powered by CTFd' -> 'Разработал Бер Максим' и Favicon в шаблонах...", flush=True)
-    for tpl in glob.glob("/opt/CTFd/CTFd/themes/*/templates/base.html"):
-        t = open(tpl, encoding="utf-8").read()
-        # Заменяем ссылку на ctfd.io в футере
+    for tpl in glob.glob("/opt/CTFd/CTFd/themes/**/*.html", recursive=True):
+        t = open(tpl, encoding="utf-8", errors="ignore").read()
+        if "ctfd.io" not in t and "shortcut icon" not in t and "Powered by CTFd" not in t:
+            continue
         t = re.sub(
             r'<a\s+href="https://ctfd\.io"[^>]*>.*?</a>',
             '<div class="mvd-author-footer"><span class="mvd-author-badge">⚡ Разработал <strong style="color:#00f0ff;">Бер Максим</strong> &nbsp;|&nbsp; МВД КИБЕРПОЛИГОН 2026</span></div>',
@@ -51,7 +52,6 @@ def main():
         )
         t = t.replace("Powered by CTFd", "Разработал Бер Максим")
         t = t.replace("Разработано CTFd", "Разработал Бер Максим")
-        # Заменяем стандартный shortcut icon на наш SVG Favicon
         t = re.sub(
             r'<link\s+rel="shortcut icon"[^>]*>',
             f'<link rel="icon" type="image/svg+xml" href="{FAV_URI}"><link rel="shortcut icon" href="{FAV_URI}">',
