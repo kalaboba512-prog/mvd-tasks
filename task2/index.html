@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ЩИТ-М // Криптографический терминал</title>
+  <style>
+    body {
+      background: #050811;
+      color: #e2e8f0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+    .panel {
+      max-width: 560px;
+      width: 100%;
+      background: #0d1527;
+      border: 1px solid #2563eb;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 40px rgba(37, 99, 235, 0.25);
+    }
+    h2 {
+      color: #60a5fa;
+      margin-top: 0;
+      letter-spacing: 0.06em;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: #060b16;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #f8fafc;
+      font-family: inherit;
+      margin: 1rem 0;
+      box-sizing: border-box;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+    }
+    button:hover { background: #1d4ed8; }
+    #result {
+      margin-top: 1.25rem;
+      padding: 0.75rem;
+      border-radius: 6px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>АПК «ЩИТ-М» // ПРОВЕРКА КЛЮЧА ОПЕРАТОРА</h2>
+    <p>Введите сессионный код оператора для расшифровки контейнера улик:</p>
+    <input id="pinInput" type="text" placeholder="Введите ключ доступа..." />
+    <button onclick="verifyKey()">Проверить допуск</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // Клиентский модуль верификации (учебная уязвимость хранения секрета на клиенте)
+    const _encodedParts = [
+      "TVZEe2Ns",
+      "MWVudF9z",
+      "MWRlX2pz",
+      "X3IzdnNy",
+      "czN9"
+    ];
+
+    function verifyKey() {
+      const val = document.getElementById("pinInput").value.trim();
+      const res = document.getElementById("result");
+      const expected = atob(_encodedParts.join(""));
+      res.style.display = "block";
+      if (val === expected) {
+        res.style.background = "rgba(16, 185, 129, 0.15)";
+        res.style.color = "#34d399";
+        res.textContent = "Доступ разрешён! Флаг подтверждён: " + expected;
+      } else {
+        res.style.background = "rgba(239, 68, 68, 0.15)";
+        res.style.color = "#f87171";
+        res.textContent = "Отказ в доступе: неверный ключ оператора. Изучите JS-скрипт страницы.";
+      }
+    }
+  </script>
+</body>
+</html>

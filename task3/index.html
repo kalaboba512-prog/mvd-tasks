@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>АРХИВ-03 // Проверка уровня допуска</title>
+  <style>
+    body {
+      background: #060a14;
+      color: #e2e8f0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+    .box {
+      max-width: 620px;
+      width: 100%;
+      background: #0e172a;
+      border: 1px solid #f59e0b;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+    }
+    h2 { color: #fbbf24; margin-top: 0; }
+    .role-badge {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid #ef4444;
+      margin: 0.75rem 0;
+    }
+    button {
+      background: #f59e0b;
+      color: #060a14;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 1rem;
+    }
+    #vault {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #070c18;
+      border: 1px dashed #334155;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>УЗЕЛ «АРХИВ-03» // КОНТРОЛЬ СЕССИИ</h2>
+    <p>Текущая роль в локальном хранилище браузера (<code>localStorage.getItem("mvd_clearance")</code>):</p>
+    <div id="roleBadge" class="role-badge">guest</div>
+    <p>Для чтения секретного досье требуется уровень допуска <code>commander</code> в <code>localStorage</code>.</p>
+    <button onclick="checkClearance()">Запросить секретное досье</button>
+    <div id="vault">Ожидание проверки уровня допуска...</div>
+  </div>
+
+  <script>
+    if (!localStorage.getItem("mvd_clearance")) {
+      localStorage.setItem("mvd_clearance", "guest");
+    }
+    function checkClearance() {
+      const role = localStorage.getItem("mvd_clearance") || "guest";
+      const badge = document.getElementById("roleBadge");
+      const vault = document.getElementById("vault");
+      badge.textContent = role;
+      if (role === "commander") {
+        badge.style.background = "rgba(16, 185, 129, 0.15)";
+        badge.style.color = "#34d399";
+        badge.style.borderColor = "#10b981";
+        const _p = [77,86,68,123,115,116,48,114,52,103,51,95,99,108,51,52,114,52,110,99,51,95,98,121,112,52,115,115,125];
+        vault.innerHTML = "<strong style='color:#34d399'>Допуск подтверждён!</strong><br/>Флаг оперативного архива: <code>" + String.fromCharCode(..._p) + "</code>";
+      } else {
+        vault.innerHTML = "<span style='color:#f87171'>Отказ: роль <code>" + role + "</code> не имеет доступа. Измените значение <code>mvd_clearance</code> на <code>commander</code> через DevTools (Application / Storage -> Local Storage).</span>";
+      }
+    }
+    checkClearance();
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* МВД КИБЕРПОЛИГОН — Кастомная тема для CTFd (Core / Core-Beta) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --mvd-bg-dark: #060a14;
+  --mvd-bg-panel: #0d1629;
+  --mvd-bg-card: #111d36;
+  --mvd-border: #1e3a6e;
+  --mvd-blue: #2563eb;
+  --mvd-cyan: #38bdf8;
+  --mvd-gold: #f59e0b;
+  --mvd-red: #ef4444;
+  --mvd-green: #10b981;
+  --mvd-text: #f1f5f9;
+  --mvd-muted: #94a3b8;
+  --bs-body-bg: #060a14;
+  --bs-body-color: #f1f5f9;
+}
+
+body {
+  background: radial-gradient(circle at 50% 0%, #102042 0%, #060a14 65%) !important;
+  color: var(--mvd-text) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  min-height: 100vh;
+}
+
+code, pre, .challenge-desc code {
+  font-family: 'JetBrains Mono', monospace !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  color: #38bdf8 !important;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+}
+
+/* Навигационная панель */
+.navbar {
+  background: rgba(9, 15, 30, 0.92) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.35) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  color: #f8fafc !important;
+  text-transform: uppercase;
+}
+
+.navbar-brand::before {
+  content: "🛡️ ";
+}
+
+/* Заголовки секций / Jumbotron */
+.jumbotron {
+  background: linear-gradient(135deg, rgba(15, 31, 64, 0.9) 0%, rgba(7, 12, 24, 0.95) 100%) !important;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.35) !important;
+  box-shadow: inset 0 -10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Карточки заданий (Challenges) */
+.challenge-button, .btn-dark, .card {
+  background: linear-gradient(160deg, #111e38 0%, #0b1325 100%) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  border-radius: 12px !important;
+  color: #f8fafc !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.challenge-button:hover {
+  transform: translateY(-4px) !important;
+  border-color: var(--mvd-gold) !important;
+  box-shadow: 0 10px 28px rgba(245, 158, 11, 0.22) !important;
+}
+
+.challenge-button.challenge-solved, .solved-challenge {
+  background: linear-gradient(160deg, #064e3b 0%, #052e24 100%) !important;
+  border-color: var(--mvd-green) !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Модальные окна и таблицы */
+.modal-content {
+  background: #0d1629 !important;
+  border: 1px solid #2563eb !important;
+  border-radius: 14px !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75) !important;
+}
+
+.table {
+  color: #e2e8f0 !important;
+}
+
+.table thead th {
+  border-bottom: 2px solid rgba(59, 130, 246, 0.45) !important;
+  color: var(--mvd-cyan) !important;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+/* Поля ввода и кнопки */
+.form-control, input[type="text"], input[type="password"], input[type="email"] {
+  background-color: #070d19 !important;
+  border: 1px solid #263e6b !important;
+  color: #f8fafc !important;
+  border-radius: 8px !important;
+}
+
+.form-control:focus {
+  border-color: var(--mvd-cyan) !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2) !important;
+}
+
+.btn-primary, .btn-info {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  border: 1px solid #3b82f6 !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.45) !important;
+}
