@@ -1,0 +1,27 @@
+name: Build MVD CTFd Image
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/build-ctfd.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Build and push
+        run: |
+          docker build \
+            --label "org.opencontainers.image.source=https://github.com/kalaboba512-prog/mvd-tasks" \
+            -t ghcr.io/kalaboba512-prog/mvd-ctfd:latest .
+          docker push ghcr.io/kalaboba512-prog/mvd-ctfd:latest
