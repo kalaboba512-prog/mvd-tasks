@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ЩИТ-М // Криптографический терминал</title>
+  <title>ЩИТ-М // Терминал аутентификации</title>
   <style>
     body {
       background: #050811;
@@ -28,7 +28,7 @@
     h2 {
       color: #60a5fa;
       margin-top: 0;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
     }
     input {
       width: 100%;
@@ -63,19 +63,18 @@
 <body>
   <div class="panel">
     <h2>АПК «ЩИТ-М» // ПРОВЕРКА КЛЮЧА ОПЕРАТОРА</h2>
-    <p>Введите сессионный код оператора для расшифровки контейнера улик:</p>
-    <input id="pinInput" type="text" placeholder="Введите ключ доступа..." />
+    <p>Введите сессионный ключ оператора для разблокировки контейнера:</p>
+    <input id="pinInput" type="text" placeholder="Введите ключ..." />
     <button onclick="verifyKey()">Проверить допуск</button>
     <div id="result"></div>
   </div>
 
   <script>
-    // Клиентский модуль верификации (учебная уязвимость хранения секрета на клиенте)
     const _encodedParts = [
       "TVZEe2Ns",
       "MWVudF9z",
       "MWRlX2pz",
-      "X3IzdnNy",
+      "X3IzdjNy",
       "czN9"
     ];
 
@@ -87,11 +86,11 @@
       if (val === expected) {
         res.style.background = "rgba(16, 185, 129, 0.15)";
         res.style.color = "#34d399";
-        res.textContent = "Доступ разрешён! Флаг подтверждён: " + expected;
+        res.textContent = "Доступ разрешён. Ключ верифицирован: " + expected;
       } else {
         res.style.background = "rgba(239, 68, 68, 0.15)";
         res.style.color = "#f87171";
-        res.textContent = "Отказ в доступе: неверный ключ оператора. Изучите JS-скрипт страницы.";
+        res.textContent = "Отказ в доступе: неверный сессионный ключ.";
       }
     }
   </script>

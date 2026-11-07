@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>БАСТИОН-1 // Служебный шлюз МВД</title>
+  <title>БАСТИОН-1 // Служебный шлюз</title>
   <style>
     body {
       background: #060a12;
-      color: #d1fae5;
+      color: #e2e8f0;
       font-family: 'Courier New', monospace;
       display: flex;
       justify-content: center;
@@ -17,12 +17,12 @@
       padding: 1rem;
     }
     .terminal {
-      max-width: 680px;
+      max-width: 640px;
       width: 100%;
       background: #0b1324;
       border: 1px solid #1e3a8a;
       border-radius: 10px;
-      padding: 2rem;
+      padding: 2.2rem;
       box-shadow: 0 0 35px rgba(30, 58, 138, 0.35);
     }
     .header {
@@ -31,31 +31,31 @@
       border-bottom: 1px dashed #1e3a8a;
       padding-bottom: 0.75rem;
       margin-bottom: 1.25rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
     }
     .status {
       color: #f59e0b;
       margin: 1rem 0;
     }
-    .hint {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      line-height: 1.5;
+    .meta {
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-top: 1.5rem;
     }
   </style>
 </head>
 <body>
   <!--
-    [DEV LOG 2026-11-01]
-    Внимание дежурному инженеру: перед вводом узла в промышленную эксплуатацию
-    удалите отладочный токен из комментариев!
-    Временный флаг доступа к узлу: MVD{html_s0urc3_1nsp3ct0r_2026}
+    ====================================================================
+    TODO [release-rc2]: Убрать временный сервисный ключ перед релизом!
+    Backup Auth Token: MVD{html_s0urc3_1nsp3ct0r_2026}
+    ====================================================================
   -->
-  <div class="terminal" data-node="bastion-01" data-debug- build="release-rc2">
-    <div class="header">АИС «БАСТИОН-1» // УЗЕЛ ВНЕШНЕГО КОНТРОЛЯ</div>
+  <div class="terminal" data-node="bastion-01" data-build="release-rc2">
+    <div class="header">АИС «БАСТИОН-1» // ШЛЮЗ ВНЕШНЕГО КОНТРОЛЯ</div>
     <p>Соединение установлено. Протокол защищённого обмена активен.</p>
-    <p class="status">[!] Доступ к оперативной сводке заблокирован: требуется отладочный маркер разработчика.</p>
-    <p class="hint">Подсказка: неопытный подрядчик оставил служебную заметку прямо в исходном коде страницы перед сдачей стенда.</p>
+    <p class="status">[!] Вход через веб-форму временно отключён администратором на период регламентных работ.</p>
+    <div class="meta">Сборка: release-rc2 • Статус узла: ожидание аутентификации</div>
   </div>
 </body>
 </html>

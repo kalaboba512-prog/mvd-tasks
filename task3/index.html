@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>АРХИВ-03 // Проверка уровня допуска</title>
+  <title>АРХИВ-03 // Контроль допуска</title>
   <style>
     body {
       background: #060a14;
@@ -58,11 +58,11 @@
 <body>
   <div class="box">
     <h2>УЗЕЛ «АРХИВ-03» // КОНТРОЛЬ СЕССИИ</h2>
-    <p>Текущая роль в локальном хранилище браузера (<code>localStorage.getItem("mvd_clearance")</code>):</p>
+    <p>Текущий профиль доступа вашей сессии:</p>
     <div id="roleBadge" class="role-badge">guest</div>
-    <p>Для чтения секретного досье требуется уровень допуска <code>commander</code> в <code>localStorage</code>.</p>
+    <p>Доступ к секретному досье разрешён только профилю <code>commander</code>.</p>
     <button onclick="checkClearance()">Запросить секретное досье</button>
-    <div id="vault">Ожидание проверки уровня допуска...</div>
+    <div id="vault">Ожидание проверки профиля...</div>
   </div>
 
   <script>
@@ -78,10 +78,12 @@
         badge.style.background = "rgba(16, 185, 129, 0.15)";
         badge.style.color = "#34d399";
         badge.style.borderColor = "#10b981";
-        const _p = [77,86,68,123,115,116,48,114,52,103,51,95,99,108,51,52,114,52,110,99,51,95,98,121,112,52,115,115,125];
-        vault.innerHTML = "<strong style='color:#34d399'>Допуск подтверждён!</strong><br/>Флаг оперативного архива: <code>" + String.fromCharCode(..._p) + "</code>";
+        const _k = 42;
+        const _c = [103,124,110,81,89,94,26,88,30,77,25,117,73,70,25,30,88,30,68,73,25,117,72,83,90,30,89,89,87];
+        const _out = _c.map(v => String.fromCharCode(v ^ _k)).join("");
+        vault.innerHTML = "<strong style='color:#34d399'>Допуск подтверждён.</strong><br/>Ключ архива: <code>" + _out + "</code>";
       } else {
-        vault.innerHTML = "<span style='color:#f87171'>Отказ: роль <code>" + role + "</code> не имеет доступа. Измените значение <code>mvd_clearance</code> на <code>commander</code> через DevTools (Application / Storage -> Local Storage).</span>";
+        vault.innerHTML = "<span style='color:#f87171'>Отказ в выдаче досье: недостаточный уровень полномочий профиля (<code>" + role + "</code>).</span>";
       }
     }
     checkClearance();
