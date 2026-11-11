@@ -46,7 +46,7 @@ def main():
             continue
         t = re.sub(
             r'<a\s+href="https://ctfd\.io"[^>]*>.*?</a>',
-            '<div class="mvd-author-footer"><span class="mvd-author-badge">⚡ Разработал <strong style="color:#00f0ff;">Бер Максим</strong> &nbsp;|&nbsp; МВД КИБЕРПОЛИГОН 2026</span></div>',
+            '<div class="mvd-author-footer"><span class="mvd-author-badge">Разработал <strong style="color:#00e5ff;">Бер Максим</strong></span></div>',
             t,
             flags=re.DOTALL | re.IGNORECASE,
         )
