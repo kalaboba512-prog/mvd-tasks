@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /mvd-tasks/night-shift-2026/19/archive/drafts/
+Sitemap: /mvd-tasks/night-shift-2026/19/archive/sitemap.xml

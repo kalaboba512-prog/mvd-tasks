@@ -1,0 +1,4 @@
+2026-11-11 03:18:09 rgb8 export
+filter bytes: one per scanline
+row stride (including filter): 3073
+header rewrite completed; pixel stream reused; compressor reset skipped
